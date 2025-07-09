@@ -1,294 +1,302 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Recebimento do Pedido</title>
-  <style>
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      padding: 20px;
-      background: #fff8e1;
-      color: #333;
-      margin: 0;
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Recebimento do Pedido</title>
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 20px;
+    background: #fff8e1;
+    color: #333;
+    margin: 0;
+  }
+  h1 {
+    color: #d84315;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  h2 {
+    color: #b3340f;
+    margin-bottom: 15px;
+    border-left: 6px solid #f8b500;
+    padding-left: 10px;
+  }
+  #resumo-pedido {
+    width: 90%;
+    margin: 0 auto 30px;
+    background: #fff3e0;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  #lista-pedido {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+  }
+  #lista-pedido li {
+    padding: 6px 0;
+    border-bottom: 1px solid #f0d9b5;
+    font-size: 1rem;
+    display: flex;
+    justify-content: space-between;
+  }
+  #total-pedido {
+    font-weight: bold;
+    text-align: right;
+    margin-top: 10px;
+    font-size: 1.1rem;
+    color: #f57c00;
+  }
+  form {
+    width: 90%;
+    margin: 0 auto 40px;
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  }
+  label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+  }
+  input, select, textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    box-sizing: border-box;
+  }
+  button, #btn-imprimir {
+    width: 100%;
+    background-color: #f57c00;
+    color: white;
+    border: none;
+    padding: 12px;
+    font-size: 1.1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-bottom: 10px;
+  }
+  button:hover, #btn-imprimir:hover {
+    background-color: #d45d00;
+  }
+  #campo-dinheiro {
+    display: none;
+    margin-bottom: 15px;
+  }
+  #troco {
+    font-weight: bold;
+    color: #d84315;
+    margin-top: 6px;
+  }
+  #cupom {
+    display: none;
+    max-width: 400px;
+    margin: 20px auto;
+    background: #fff;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 0 8px #ccc;
+    font-family: monospace;
+    white-space: pre-wrap;
+    line-height: 1.3;
+    color: #333;
+  }
+  @media print {
+    body * {
+      visibility: hidden;
     }
-    h1 {
-      color: #d84315;
-      text-align: center;
-      margin-bottom: 30px;
+    #cupom, #cupom * {
+      visibility: visible;
     }
-    h2 {
-      color: #b3340f;
-      margin-bottom: 15px;
-      border-left: 6px solid #f8b500;
-      padding-left: 10px;
-    }
-    #resumo-pedido {
-      max-width: 400px;
-      margin: 0 auto 30px;
-      background: #fff3e0;
-      padding: 15px;
-      border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    }
-    #lista-pedido {
-      list-style: none;
-      padding-left: 0;
-      margin: 0;
-    }
-    #lista-pedido li {
-      padding: 6px 0;
-      border-bottom: 1px solid #f0d9b5;
-      font-size: 1rem;
-      display: flex;
-      justify-content: space-between;
-    }
-    #total-pedido {
-      font-weight: bold;
-      text-align: right;
-      margin-top: 10px;
-      font-size: 1.1rem;
-      color: #f57c00;
-    }
-    form {
-      max-width: 400px;
-      margin: 0 auto 40px;
-      background: #fff;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    }
-    label {
-      display: block;
-      margin-bottom: 8px;
-      font-weight: 600;
-    }
-    input, select, textarea {
-      width: 100%;
-      padding: 8px;
-      margin-bottom: 15px;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-      font-size: 1rem;
-      box-sizing: border-box;
-    }
-    button, #btn-imprimir {
-      width: 100%;
-      background-color: #f57c00;
-      color: white;
-      border: none;
-      padding: 12px;
-      font-size: 1.1rem;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-      margin-bottom: 10px;
-    }
-    button:hover, #btn-imprimir:hover {
-      background-color: #d45d00;
-    }
-    #campo-dinheiro {
-      display: none;
-      margin-bottom: 15px;
-    }
-    #troco {
-      font-weight: bold;
-      color: #d84315;
-      margin-top: 6px;
-    }
-    /* Estilos para impressão do cupom */
     #cupom {
-      display: none;
-      max-width: 400px;
-      margin: 20px auto;
-      background: #fff;
-      padding: 15px;
-      border-radius: 10px;
-      box-shadow: 0 0 8px #ccc;
-      font-family: monospace;
-      white-space: pre-wrap;
-      line-height: 1.3;
-      color: #333;
+      position: absolute;
+      left: 0; top: 0;
+      width: 100%;
+      margin: 0;
+      box-shadow: none;
+      background: white;
+      color: black;
     }
-    @media print {
-      body * {
-        visibility: hidden;
-      }
-      #cupom, #cupom * {
-        visibility: visible;
-      }
-      #cupom {
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-        margin: 0;
-        box-shadow: none;
-      }
-    }
-  </style>
+  }
+</style>
 </head>
 <body>
 
-  <h1>Finalizar Pedido</h1>
+<h1>Recebimento do Pedido</h1>
 
-  <section id="resumo-pedido">
-    <h2>Resumo do Pedido</h2>
-    <ul id="lista-pedido"></ul>
-    <p id="total-pedido"></p>
-  </section>
+<div id="resumo-pedido">
+  <h2>Resumo do Pedido</h2>
+  <ul id="lista-pedido"></ul>
+  <div id="total-pedido"></div>
+</div>
 
-  <form id="form-pedido">
-    <label for="nome">Nome Completo:</label>
-    <input type="text" id="nome" name="nome" required />
+<form id="form-pedido">
+  <label for="nome">Nome Completo (opcional):</label>
+  <input type="text" id="nome" name="nome" placeholder="Cliente Geral se vazio" />
 
-    <label for="endereco">Endereço de Entrega:</label>
-    <textarea id="endereco" name="endereco" rows="3" required></textarea>
+  <label for="endereco">Endereço (opcional):</label>
+  <textarea id="endereco" name="endereco" rows="2" placeholder="Endereço para entrega"></textarea>
 
-    <label for="pagamento">Forma de Pagamento:</label>
-    <select id="pagamento" name="pagamento" required>
-      <option value="" disabled selected>Selecione...</option>
-      <option value="pix">Pix</option>
-      <option value="dinheiro">Dinheiro</option>
-      <option value="cartao">Cartão</option>
-    </select>
+  <label for="pagamento">Forma de Pagamento:</label>
+  <select id="pagamento" name="pagamento" required>
+    <option value="pix">Pix</option>
+    <option value="dinheiro">Dinheiro</option>
+    <option value="cartao">Cartão</option>
+  </select>
 
-    <div id="campo-dinheiro">
-      <label for="valor-entregue">Valor Entregue (R$):</label>
-      <input type="number" id="valor-entregue" name="valor-entregue" min="0" step="0.01" />
-      <p id="troco"></p>
-    </div>
+  <div id="campo-dinheiro">
+    <label for="valor-dinheiro">Valor em dinheiro (R$):</label>
+    <input type="number" id="valor-dinheiro" name="valor-dinheiro" min="0" step="0.01" placeholder="Quanto o cliente pagou?" />
+    <div id="troco"></div>
+  </div>
 
-    <button type="submit">Confirmar Pedido</button>
-  </form>
+  <button type="submit" id="btn-confirmar">Confirmar Pedido</button>
+  <button type="button" id="cancelar-pedido" style="background-color:#999;">Cancelar Pedido</button>
+</form>
 
-  <button id="btn-imprimir" style="display:none;">Imprimir Cupom</button>
-
-  <section id="cupom" aria-label="Cupom do Pedido"></section>
+<div id="cupom" aria-live="polite"></div>
 
 <script>
-  const pagamentoSelect = document.getElementById('pagamento');
-  const campoDinheiro = document.getElementById('campo-dinheiro');
-  const valorEntregueInput = document.getElementById('valor-entregue');
-  const trocoDisplay = document.getElementById('troco');
-  const listaPedido = document.getElementById('lista-pedido');
+  const listaPedidoEl = document.getElementById('lista-pedido');
   const totalPedidoEl = document.getElementById('total-pedido');
-  const formPedido = document.getElementById('form-pedido');
-  const btnImprimir = document.getElementById('btn-imprimir');
-  const cupomSection = document.getElementById('cupom');
+  const form = document.getElementById('form-pedido');
+  const campoDinheiro = document.getElementById('campo-dinheiro');
+  const valorDinheiroInput = document.getElementById('valor-dinheiro');
+  const trocoEl = document.getElementById('troco');
+  const cupomEl = document.getElementById('cupom');
+  const cancelarBtn = document.getElementById('cancelar-pedido');
+  const pagamentoSelect = document.getElementById('pagamento');
 
-  let totalPedido = 0;
-  let pedido = [];
+  let pedido = JSON.parse(localStorage.getItem('pedido') || '[]');
 
-  window.addEventListener('DOMContentLoaded', () => {
-    pedido = JSON.parse(localStorage.getItem('pedido') || '[]');
+  if (pedido.length === 0) {
+    alert('Nenhum pedido encontrado. Voltando ao cardápio.');
+    window.location.href = 'cardapio.html';
+  }
 
-    if (pedido.length === 0) {
-      listaPedido.innerHTML = '<li>Nenhum item no pedido.</li>';
-      totalPedidoEl.textContent = '';
-      totalPedido = 0;
-      return;
-    }
-
-    totalPedido = pedido.reduce((acc, item) => acc + item.preco * item.quantidade, 0);
-
-    listaPedido.innerHTML = '';
+  // Mostrar pedido na tela
+  function mostrarResumo() {
+    listaPedidoEl.innerHTML = '';
+    let total = 0;
     pedido.forEach(item => {
       const li = document.createElement('li');
-      li.innerHTML = `<span>${item.quantidade}x ${item.nome}</span><span>R$ ${(item.preco * item.quantidade).toFixed(2).replace('.', ',')}</span>`;
-      listaPedido.appendChild(li);
+      li.textContent = `${item.quantidade}x ${item.nome}`;
+      const precoTotalItem = item.preco * item.quantidade;
+      total += precoTotalItem;
+
+      const spanPreco = document.createElement('span');
+      spanPreco.textContent = `R$ ${precoTotalItem.toFixed(2).replace('.', ',')}`;
+      li.appendChild(spanPreco);
+
+      listaPedidoEl.appendChild(li);
     });
+    totalPedidoEl.textContent = `Total: R$ ${total.toFixed(2).replace('.', ',')}`;
+    return total;
+  }
 
-    totalPedidoEl.textContent = `Total: R$ ${totalPedido.toFixed(2).replace('.', ',')}`;
-  });
+  let totalPedido = mostrarResumo();
 
+  // Mostrar campo dinheiro só se selecionado
   pagamentoSelect.addEventListener('change', () => {
     if (pagamentoSelect.value === 'dinheiro') {
       campoDinheiro.style.display = 'block';
-      valorEntregueInput.required = true;
-      trocoDisplay.textContent = '';
-      valorEntregueInput.value = '';
-      btnImprimir.style.display = 'none';
-      cupomSection.style.display = 'none';
     } else {
       campoDinheiro.style.display = 'none';
-      valorEntregueInput.required = false;
-      trocoDisplay.textContent = '';
-      valorEntregueInput.value = '';
-      btnImprimir.style.display = 'none';
-      cupomSection.style.display = 'none';
+      trocoEl.textContent = '';
+      valorDinheiroInput.value = '';
     }
   });
 
-  valorEntregueInput.addEventListener('input', () => {
-    const valorEntregue = parseFloat(valorEntregueInput.value.replace(',', '.'));
-    if (!isNaN(valorEntregue) && valorEntregue >= totalPedido) {
-      const troco = valorEntregue - totalPedido;
-      trocoDisplay.textContent = `Troco: R$ ${troco.toFixed(2).replace('.', ',')}`;
+  // Calcular troco
+  valorDinheiroInput.addEventListener('input', () => {
+    const pago = parseFloat(valorDinheiroInput.value);
+    if (!isNaN(pago) && pago >= totalPedido) {
+      const troco = pago - totalPedido;
+      trocoEl.textContent = `Troco: R$ ${troco.toFixed(2).replace('.', ',')}`;
     } else {
-      trocoDisplay.textContent = 'Valor entregue insuficiente para o pagamento.';
+      trocoEl.textContent = 'Valor insuficiente para pagamento';
     }
   });
 
-  formPedido.addEventListener('submit', function(e) {
-    e.preventDefault();
+  // Cancelar pedido
+  cancelarBtn.addEventListener('click', () => {
+    if (confirm('Tem certeza que deseja cancelar o pedido? Todos os dados serão perdidos.')) {
+      localStorage.removeItem('pedido');
+      alert('Pedido cancelado.');
+      window.location.href = 'cardapio.html';
+    }
+  });
 
+  // Gerar e mostrar cupom
+  function gerarCupom() {
+    let nomeCliente = form.nome.value.trim();
+    if (!nomeCliente) nomeCliente = "Cliente Geral";
+
+    let enderecoCliente = form.endereco.value.trim() || "-";
+
+    let formaPagamento = pagamentoSelect.options[pagamentoSelect.selectedIndex].text;
+
+    let valorPago = "";
     if (pagamentoSelect.value === 'dinheiro') {
-      const valorEntregue = parseFloat(valorEntregueInput.value.replace(',', '.'));
-      if (isNaN(valorEntregue) || valorEntregue < totalPedido) {
-        alert('Por favor, informe um valor entregue suficiente para o pagamento.');
-        return;
+      valorPago = parseFloat(valorDinheiroInput.value);
+      if (isNaN(valorPago) || valorPago < totalPedido) {
+        alert('Valor em dinheiro insuficiente.');
+        return null;
       }
     }
 
-    // Mostrar cupom com dados do pedido e cliente
-    gerarCupom();
-
-    // Mostrar botão imprimir
-    btnImprimir.style.display = 'block';
-
-    // Opcional: desabilitar botão confirmar para evitar múltiplos envios
-    formPedido.querySelector('button[type="submit"]').disabled = true;
-
-    // Limpar pedido do localStorage só depois da impressão ou confirmar pedido finalizado
-  });
-
-  btnImprimir.addEventListener('click', () => {
-    window.print();
-    // Após imprimir, pode limpar o pedido e redirecionar
-    localStorage.removeItem('pedido');
-    alert('Pedido finalizado! Obrigado pela compra 🎉');
-    window.location.href = 'index.html';
-  });
-
-  function gerarCupom() {
-    let cupomTexto = '';
-    cupomTexto += '***** CUPOM DE PEDIDO *****\n\n';
-    cupomTexto += `Cliente: ${formPedido.nome.value}\n`;
-    cupomTexto += `Endereço: ${formPedido.endereco.value}\n`;
-    cupomTexto += `Pagamento: ${pagamentoSelect.options[pagamentoSelect.selectedIndex].text}\n\n`;
-    cupomTexto += 'Itens:\n';
+    let texto = '';
+    texto += '***** CUPOM DE PEDIDO *****\n\n';
+    texto += `Cliente: ${nomeCliente}\n`;
+    texto += `Endereço: ${enderecoCliente}\n`;
+    texto += `Pagamento: ${formaPagamento}\n\n`;
+    texto += 'Itens:\n';
 
     pedido.forEach(item => {
-      const totalItem = (item.preco * item.quantidade).toFixed(2).replace('.', ',');
-      cupomTexto += ` - ${item.quantidade}x ${item.nome} .......... R$ ${totalItem}\n`;
+      texto += `- ${item.quantidade}x ${item.nome} - R$ ${(item.preco * item.quantidade).toFixed(2).replace('.', ',')}\n`;
     });
 
-    cupomTexto += '\n';
-    cupomTexto += `Total: R$ ${totalPedido.toFixed(2).replace('.', ',')}\n`;
+    texto += `\nTotal: R$ ${totalPedido.toFixed(2).replace('.', ',')}\n`;
 
     if (pagamentoSelect.value === 'dinheiro') {
-      const valorEntregue = parseFloat(valorEntregueInput.value.replace(',', '.'));
-      cupomTexto += `Valor entregue: R$ ${valorEntregue.toFixed(2).replace('.', ',')}\n`;
-      const troco = valorEntregue - totalPedido;
-      cupomTexto += `Troco: R$ ${troco.toFixed(2).replace('.', ',')}\n`;
+      const troco = valorPago - totalPedido;
+      texto += `Valor Pago: R$ ${valorPago.toFixed(2).replace('.', ',')}\n`;
+      texto += `Troco: R$ ${troco.toFixed(2).replace('.', ',')}\n`;
     }
 
-    cupomTexto += '\nMuito obrigado pela preferência!\n';
+    texto += '\nObrigado pelo seu pedido!';
 
-    cupomSection.textContent = cupomTexto;
-    cupomSection.style.display = 'block';
+    return texto;
   }
+
+  // Botão confirmar pedido
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    const cupomTexto = gerarCupom();
+    if (!cupomTexto) return; // Erro no valor dinheiro
+
+    cupomEl.textContent = cupomTexto;
+    cupomEl.style.display = 'block';
+
+    // Limpar pedido do localStorage (pedido encerrado)
+    localStorage.removeItem('pedido');
+
+    // Desabilitar botões para evitar reenvio
+    form.querySelectorAll('button').forEach(b => b.disabled = true);
+
+    // Oferecer impressão automática (opcional)
+    if (confirm('Pedido confirmado! Deseja imprimir o cupom?')) {
+      window.print();
+    }
+  });
 </script>
 
 </body>
