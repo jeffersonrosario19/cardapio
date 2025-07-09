@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cardápio</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #fff8e1;
+      margin: 0;
+      padding: 20px;
+      color: #333;
+    }
+
+    h1 {
+      color: #d84315;
+      font-size: 2.2rem;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .carrinho-fixo {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      font-size: 1.2rem;
+      background: #fff;
+      border: 2px solid #f8b500;
+      border-radius: 30px;
+      padding: 8px 16px;
+      color: #f57c00;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+      z-index: 100;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .categoria {
+      width: 100%;
+      margin-bottom: 40px;
+    }
+
+    .categoria h2 {
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+      border-left: 6px solid #f8b500;
+      padding-left: 10px;
+      color: #b3340f;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      width: 100%;
+    }
+
+    li {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 12px 20px;
+      margin-bottom: 10px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    }
+
+    .item-info {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      flex: 1;
+    }
+
+    label {
+      display: flex;
+      align-items: center;
+      font-size: 1rem;
+      margin-bottom: 6px;
+      cursor: pointer;
+    }
+
+    input[type="checkbox"] {
+      margin-right: 10px;
+      transform: scale(1.2);
+      cursor: pointer;
+    }
+
+    select {
+      padding: 6px 10px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      background: #fff;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    select:disabled {
+      background: #f0f0f0;
+      color: #999;
+      cursor: not-allowed;
+    }
+
+    .preco {
+      font-weight: bold;
+      color: #f57c00;
+      min-width: 70px;
+      text-align: right;
+      margin-left: 15px;
+      white-space: nowrap;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 0.9rem;
+      color: #999;
+      margin-top: 40px;
+    }
+
+    @media (max-width: 480px) {
+      li {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .preco {
+        text-align: left;
+        margin-top: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="carrinho-fixo" id="carrinho">🛒 Total: R$ 0,00</div>
+
+  <h1>Cardápio</h1>
+
+  <section class="categoria">
+    <h2>Pratos Salgados</h2>
+    <ul>
+      <li>
+        <div class="item-info">
+          <label>
+            <input type="checkbox" class="item-check" />
+            Tacacá
+          </label>
+          <select class="item-quantidade" data-preco="12.00" disabled>
+            <option value="0">Selecionar</option>
+            <option value="1">1 un</option>
+            <option value="2">2 un</option>
+            <option value="3">3 un</option>
+            <option value="4">4 un</option>
+            <option value="5">5 un</option>
+          </select>
+        </div>
+        <span class="preco">R$ 12,00</span>
+      </li>
+
+      <li>
+        <div class="item-info">
+          <label><input type="checkbox" class="item-check" /> Vatapá</label>
+          <select class="item-quantidade" data-preco="10.00" disabled>
+            <option value="0">Selecionar</option>
+            <option value="1">1 un</option>
+            <option value="2">2 un</option>
+            <option value="3">3 un</option>
+            <option value="4">4 un</option>
+            <option value="5">5 un</option>
+          </select>
+        </div>
+        <span class="preco">R$ 10,00</span>
+      </li>
+
+      <li>
+        <div class="item-info">
+          <label><input type="checkbox" class="item-check" /> Arroz com Galinha</label>
+          <select class="item-quantidade" data-preco="14.00" disabled>
+            <option value="0">Selecionar</option>
+            <option value="1">1 un</option>
+            <option value="2">2 un</option>
+            <option value="3">3 un</option>
+            <option value="4">4 un</option>
+          </select>
+        </div>
+        <span class="preco">R$ 14,00</span>
+      </li>
+
+      <li>
+        <div class="item-info">
+          <label><input type="checkbox" class="item-check" /> Churrasco</label>
+          <select class="item-quantidade" data-preco="7.00" disabled>
+            <option value="0">Selecionar</option>
+            <option value="1">1 un</option>
+            <option value="2">2 un</option>
+            <option value="3">3 un</option>
+            <option value="4">4 un</option>
+          </select>
+        </div>
+        <span class="preco">R$ 7,00</span>
+      </li>
+    </ul>
+  </section>
+
+  <section class="categoria">
+    <h2>Sobremesas</h2>
+    <ul>
+      <li>
+        <div class="item-info">
+          <label><input type="checkbox" class="item-check" /> Bolo Simples</label>
+          <select class="item-quantidade" data-preco="5.00" disabled>
+            <option value="0">Selecionar</option>
+            <option value="1">1 un</option>
+            <option value="2">2 un</option>
+            <option value="3">3 un</option>
+          </select>
+        </div>
+        <span class="preco">R$ 5,00</span>
+      </li>
+
+      <li>
+        <div class="item-info">
+          <label><input type="checkbox" class="item-check" /> Pudim</label>
+          <select class="item-quantidade" data-preco="6.00" disabled>
+            <option value="0">Selecionar</option>
+            <option value="1">1 un</option>
+            <option value="2">2 un</option>
+            <option value="3">3 un</option>
+          </select>
+        </div>
+        <span class="preco">R$ 6,00</span>
+      </li>
+    </ul>
+  </section>
+
+  <footer>
+    &copy; 2025 Arraial — Todos os direitos reservados.
+  </footer>
+
+  <script>
+    const checkboxes = document.querySelectorAll('.item-check');
+    const selects = document.querySelectorAll('.item-quantidade');
+    const carrinho = document.getElementById('carrinho');
+
+    function calcularTotal() {
+      let total = 0;
+
+      selects.forEach(select => {
+        if (!select.disabled) {
+          const quantidade = parseInt(select.value);
+          const preco = parseFloat(select.dataset.preco);
+          if (!isNaN(quantidade) && quantidade > 0) {
+            total += quantidade * preco;
+          }
+        }
+      });
+
+      carrinho.textContent = `🛒 Total: R$ ${total.toFixed(2).replace('.', ',')}`;
+    }
+
+    checkboxes.forEach(checkbox => {
+      checkbox.addEventListener('change', function () {
+        const select = this.closest('.item-info').querySelector('.item-quantidade');
+        if (this.checked) {
+          select.disabled = false;
+          select.value = "1";  // Valor padrão 1un ao ativar
+        } else {
+          select.disabled = true;
+          select.value = "0";
+        }
+        calcularTotal();
+      });
+    });
+
+    selects.forEach(select => {
+      select.addEventListener('change', calcularTotal);
+    });
+
+    carrinho.addEventListener('click', () => {
+      const pedido = [];
+
+      const itens = document.querySelectorAll('li');
+
+      itens.forEach(item => {
+        const checkbox = item.querySelector('.item-check');
+        const select = item.querySelector('.item-quantidade');
+
+        if (checkbox && checkbox.checked && select && parseInt(select.value) > 0) {
+          const nome = checkbox.parentElement.textContent.trim();
+          const preco = parseFloat(select.dataset.preco);
+          pedido.push({
+            nome,
+            quantidade: parseInt(select.value),
+            preco
+          });
+        }
+      });
+
+      if (pedido.length === 0) {
+        alert('Selecione pelo menos um item para continuar.');
+        return;
+      }
+
+      localStorage.setItem('pedido', JSON.stringify(pedido));
+      window.location.href = 'recebimento.html';
+    });
+
+    // Inicializa total no carregamento
+    calcularTotal();
+  </script>
+
+</body>
+</html>

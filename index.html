@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Arraial</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="script.js" defer></script>
+</head>
+<body>
+
+<section id="tela-inicial">
+  <h1>🎉 Arraial 🎉</h1>
+  <div class="datetime">Data: 08/07/2025 — Hora: 00:00</div>
+
+  <div class="button-container">
+    <a href="cardapio.html" class="btn">Iniciar Pedido</a>
+    <button onclick="document.getElementById('qr').style.display = 'block'">QR Code</button>
+  </div>
+
+  <div id="qr" class="qr-alert" style="display:none;">
+    <strong>Escaneie o QR Code Pix:</strong><br />
+    <img src="icon-192.png" alt="QR Code Pix Fictício" />
+  </div>
+</section>
+
+</body>
+</html>

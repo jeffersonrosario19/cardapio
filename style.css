@@ -1,0 +1,129 @@
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Fonte e fundo geral */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #fceabb, #f8b500);
+  color: #333;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+/* Container principal */
+#tela-inicial {
+  background: white;
+  padding: 30px 40px;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+  text-align: center;
+  max-width: 400px;
+  width: 100%;
+}
+
+/* Título */
+h1 {
+  font-size: 2.8rem;
+  margin-bottom: 15px;
+  color: #d84315;
+}
+
+/* Data e hora */
+.datetime {
+  font-size: 1.1rem;
+  margin-bottom: 25px;
+  font-weight: 600;
+  color: #555;
+}
+
+/* Botões container */
+.button-container {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+/* Botões */
+button {
+  background-color: #d84315;
+  border: none;
+  color: white;
+  padding: 12px 22px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  flex: 1;
+  max-width: 150px;
+}
+
+button:hover {
+  background-color: #b3340f;
+}
+
+/* QR Code container */
+.qr-alert {
+  background-color: #fff3e0;
+  border: 2px solid #ffb74d;
+  padding: 15px 20px;
+  border-radius: 12px;
+  color: #bf360c;
+  font-weight: 600;
+  box-shadow: 0 4px 8px rgba(255, 183, 77, 0.5);
+}
+
+/* QR Code imagem */
+.qr-alert img {
+  margin-top: 10px;
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+/* Responsividade simples */
+@media (max-width: 480px) {
+  #tela-inicial {
+    padding: 20px;
+  }
+  
+  h1 {
+    font-size: 2rem;
+  }
+  
+  .button-container {
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  button {
+    max-width: 100%;
+  }
+}
+.btn {
+  display: inline-block;
+  background-color: #d84315;
+  color: white;
+  padding: 12px 22px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  border-radius: 8px;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  max-width: 150px;
+  width: 100%;
+}
+
+.btn:hover {
+  background-color: #b3340f;
+}
