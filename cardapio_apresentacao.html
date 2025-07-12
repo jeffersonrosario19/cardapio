@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cardápio do Arraial de São Francisco</title>
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cardápio do Arraial de São Francisco</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+      background-color: #f4ede4; /* fundo claro elegante */
+      color: #3a2e1e;
+      padding: 1rem;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      background-color: #a47148; /* tom terroso elegante */
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      padding: 1rem;
+      color: white;
+    }
+
+    header img {
+      width: 80px;
+      max-width: 100%;
+      border-radius: 50%;
+    }
+
+    h1 {
+      font-size: 1.5rem;
+      margin: 0.5rem 0;
+    }
+
+    .subtitulo {
+      font-style: italic;
+      font-size: 1rem;
+      color: #f5e5d5;
+    }
+
+    section {
+      margin-bottom: 2rem;
+      padding: 0.5rem 0;
+    }
+
+    section h2 {
+      background-color: #f7dab1;
+      padding: 0.6rem;
+      font-size: 1.3rem;
+      border-left: 6px solid #8b5e3c;
+      margin: 0;
+      color: #3f2e1e;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0.5rem;
+      margin: 0;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 8px;
+    }
+
+    li {
+      padding: 0.5rem 0;
+      border-bottom: 1px solid #e2d6cc;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      transition: background-color 0.3s ease;
+    }
+
+    li:hover {
+      background-color: #f3eee9;
+    }
+
+    li span {
+      font-style: italic;
+      font-size: 0.95rem;
+      color: #a0522d;
+      margin-left: auto;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 2rem;
+      background-color: rgba(255, 255, 255, 0.9);
+      padding: 1rem;
+      border-radius: 10px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.1);
+    }
+
+    #mensagem-alerta {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.5);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .caixa-alerta {
+      background-color: #fff9e6;
+      color: #4e3b1f;
+      padding: 2rem;
+      border-radius: 12px;
+      text-align: center;
+      max-width: 80%;
+      box-shadow: 0 0 15px rgba(0,0,0,0.3);
+      font-size: 1.1rem;
+      animation: fadeIn 0.4s ease;
+    }
+
+    .caixa-alerta button {
+      margin-top: 1rem;
+      padding: 0.6rem 1.2rem;
+      background-color: #8b5e3c;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    .caixa-alerta button:hover {
+      background-color: #6b4429;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    @media (max-width: 600px) {
+      li {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      li span {
+        margin-left: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <img src="icone.png" alt="Ícone Cardápio">
+    <h1>Cardápio do Arraial de São Francisco de Assis</h1>
+    <p class="subtitulo">Seja bem-vindo, estamos prontos para lhe atender!</p>
+  </header>
+
+  <section>
+    <h2>🍽️ Pratos Principais</h2>
+    <ul>
+      <li>🌿 Tacacá <span>R$ 11,00</span></li>
+      <li>🥜 Vatapá <span>R$ 8,00</span></li>
+      <li>🍗 Arroz com galinha <span>R$ 6,00</span></li>
+      <li>🔥 Churrasco no espeto <span>R$ 11,00</span></li>
+      <li>🍝 Lasanha <span>R$ 8,00</span></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>🍩 Lanches & Doces</h2>
+    <ul>
+      <li>🍿 Pipoca <span>R$ 4,00</span></li>
+      <li>🥟 Coxinha de Frango <span>R$ 4,00</span></li>
+      <li>🍮 Pudim <span>R$ 7,00</span></li>
+      <li>🍰 Bolo simples <span>R$ 5,00</span></li>
+      <li>🍫 Bolo de chocolate <span>R$ 6,00</span></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>🥤 Bebidas & Sobremesas</h2>
+    <ul>
+      <li>🥭 Suco de Bacuri <span>R$ 6,00</span></li>
+      <li>🧃 Refrigerante Lata <span>R$ 5,00</span></li>
+      <li>🥤 Refrigerante 2 litros <span>R$ 8,00</span></li>
+      <li>🥤 Coca cola 2 litros <span>R$ 7,00</span></li>
+      <li>💧 Água mineral 600ml <span>R$ 4,00</span></li>
+    </ul>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Arraial de São Francisco de Assis. Todos os direitos reservados.</p>
+    <p>Criador - Jefferson Rosário | Contatos: (91) 98049-9217</p>
+  </footer>
+<div id="mensagem-alerta" style="display:none;">
+  <div class="caixa-alerta">
+    <p>🍽️ Que delícia!<br><br>Dirija-se à <strong>bilheteria</strong> e garanta já o seu pedido.<br>
+    Estamos prontos para lhe servir com carinho! 💛<br>Formas de pagamento <strong>DINHEIRO</strong> e <strong>PIX</strong></p>
+    <button onclick="fecharAlerta()">Fechar</button>
+  </div>
+</div>
+<script>
+  function mostrarAlerta() {
+    document.getElementById("mensagem-alerta").style.display = "flex";
+  }
+
+  function fecharAlerta() {
+    document.getElementById("mensagem-alerta").style.display = "none";
+  }
+
+  document.querySelectorAll("li").forEach(item => {
+    item.addEventListener("click", mostrarAlerta);
+  });
+</script>
+
+</body>
+</html>
