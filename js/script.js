@@ -114,6 +114,7 @@ const state = {
   search: "",
   paymentMethod: "Dinheiro",
   pixVisible: false,
+  orderPanelOpen: false,
   order: [],
   currentItemId: null,
   editingIndex: null,
@@ -136,6 +137,11 @@ const refs = {
   resetFiltersBtn: document.getElementById("resetFiltersBtn"),
   newOrderBtn: document.getElementById("newOrderBtn"),
   finalizarBtn: document.getElementById("finalizarBtn"),
+  orderPanel: document.getElementById("orderPanel"),
+  orderOverlay: document.getElementById("orderOverlay"),
+  openOrderPanelBtn: document.getElementById("openOrderPanelBtn"),
+  closeOrderPanelBtn: document.getElementById("closeOrderPanelBtn"),
+  mobileBarTotal: document.getElementById("mobileBarTotal"),
   paymentMethods: document.getElementById("paymentMethods"),
   pixCard: document.getElementById("pixCard"),
   showPixBtn: document.getElementById("showPixBtn"),
@@ -187,6 +193,24 @@ function getOrderTotal() {
 function updateHeaderMeta() {
   refs.resumoMesa.textContent = refs.mesaInput.value.trim() || "Nao informada";
   refs.resumoGarcom.textContent = refs.garcomInput.value.trim() || "Nao informado";
+}
+
+function updateOrderPanelUI() {
+  const isMobile = window.innerWidth <= 720;
+
+  refs.orderOverlay.hidden = !isMobile || !state.orderPanelOpen;
+  refs.orderPanel.classList.toggle("is-open", isMobile && state.orderPanelOpen);
+  document.body.classList.toggle("is-order-panel-open", isMobile && state.orderPanelOpen);
+}
+
+function openOrderPanel() {
+  state.orderPanelOpen = true;
+  updateOrderPanelUI();
+}
+
+function closeOrderPanel() {
+  state.orderPanelOpen = false;
+  updateOrderPanelUI();
 }
 
 function renderCategoryChips() {
@@ -325,6 +349,8 @@ function renderOrder() {
   const total = getOrderTotal();
   refs.subtotalValue.textContent = currency(total);
   refs.totalValue.textContent = currency(total);
+  refs.mobileBarTotal.textContent = currency(total);
+  refs.openOrderPanelBtn.textContent = state.order.length > 0 ? `Ver pedido (${state.order.length})` : "Ver pedido";
   updatePixUI();
   updateChange();
 }
@@ -418,12 +444,14 @@ function newOrder() {
   state.order = [];
   state.paymentMethod = "Dinheiro";
   state.pixVisible = false;
+  state.orderPanelOpen = false;
   refs.dinheiroInput.value = "";
   refs.mesaInput.value = "";
   refs.garcomInput.value = "";
   updateHeaderMeta();
   renderPaymentMethods();
   renderOrder();
+  updateOrderPanelUI();
 }
 
 function printReceipt() {
@@ -551,6 +579,9 @@ refs.searchInput.addEventListener("input", (event) => {
 refs.resetFiltersBtn.addEventListener("click", resetFilters);
 refs.newOrderBtn.addEventListener("click", newOrder);
 refs.finalizarBtn.addEventListener("click", finalizeOrder);
+refs.openOrderPanelBtn.addEventListener("click", openOrderPanel);
+refs.closeOrderPanelBtn.addEventListener("click", closeOrderPanel);
+refs.orderOverlay.addEventListener("click", closeOrderPanel);
 refs.dinheiroInput.addEventListener("input", updateChange);
 refs.mesaInput.addEventListener("input", updateHeaderMeta);
 refs.garcomInput.addEventListener("input", updateHeaderMeta);
@@ -596,8 +627,11 @@ refs.decisionDialog.addEventListener("click", (event) => {
   }
 });
 
+window.addEventListener("resize", updateOrderPanelUI);
+
 updateHeaderMeta();
 renderCategoryChips();
 renderMenu();
 renderPaymentMethods();
 renderOrder();
+updateOrderPanelUI();
