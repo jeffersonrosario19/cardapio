@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Barraca Sao Francisco de Assis | Festa do Padroeiro</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="hero">
+      <div class="hero__content">
+        <p class="eyebrow">Festa de Sao Francisco de Assis</p>
+        <h1>Barraca Sao Francisco de Assis</h1>
+      </div>
+    </header>
+
+    <main class="workspace">
+      <section class="catalog">
+        <div class="section-header">
+          <div>
+            <p class="section-kicker">Cardápio</p>
+            <h2>Escolha os itens do pedido</h2>
+          </div>
+          <button class="ghost-button" id="resetFiltersBtn" type="button">Limpar filtros</button>
+        </div>
+
+        <div class="controls">
+          <label class="field">
+            <span>Mesa ou senha</span>
+            <input id="mesaInput" type="text" placeholder="Ex: Mesa 07">
+          </label>
+
+          <label class="field">
+            <span>Atendente</span>
+            <input id="garcomInput" type="text" placeholder="Ex: Camila">
+          </label>
+
+          <label class="field field--search">
+            <span>Buscar item</span>
+            <input id="searchInput" type="search" placeholder="Hambúrguer, suco, combo...">
+          </label>
+        </div>
+
+        <div class="chips" id="categoryChips"></div>
+        <div class="product-grid" id="cardapioGrid"></div>
+      </section>
+
+      <aside class="order-panel">
+        <div class="section-header">
+          <div>
+            <p class="section-kicker">Pedido atual</p>
+            <h2>Resumo da venda</h2>
+          </div>
+          <button class="ghost-button" id="newOrderBtn" type="button">Novo pedido</button>
+        </div>
+
+        <div class="order-meta">
+          <div>
+            <span>Mesa</span>
+            <strong id="resumoMesa">Nao informada</strong>
+          </div>
+          <div>
+            <span>Atendente</span>
+            <strong id="resumoGarcom">Nao informado</strong>
+          </div>
+        </div>
+
+        <div class="order-list" id="listaPedido"></div>
+
+        <div class="totals-card">
+          <div class="total-line">
+            <span>Subtotal</span>
+            <strong id="subtotalValue">R$ 0,00</strong>
+          </div>
+          <div class="total-line total-line--grand">
+            <span>Total</span>
+            <strong id="totalValue">R$ 0,00</strong>
+          </div>
+        </div>
+
+        <div class="payment-card">
+          <div class="payment-card__header">
+            <h3>Pagamento</h3>
+            <p>Calcule o troco e finalize o atendimento.</p>
+          </div>
+
+          <div class="payment-methods" id="paymentMethods"></div>
+
+          <label class="field">
+            <span>Valor recebido</span>
+            <input id="dinheiroInput" type="number" min="0" step="0.01" placeholder="0,00">
+          </label>
+
+          <div class="change-box" id="trocoBox">Troco: R$ 0,00</div>
+
+          <div class="pix-card" id="pixCard" hidden>
+            <div class="pix-card__top">
+              <div>
+                <strong>Pagamento via Pix</strong>
+                <p>Mostre o QR Code para o cliente e confirme o valor antes do pagamento.</p>
+              </div>
+              <button class="ghost-button" id="showPixBtn" type="button">Mostrar QR Code</button>
+            </div>
+            <div class="pix-card__amount">
+              <span>Total a pagar</span>
+              <strong id="pixAmountValue">R$ 0,00</strong>
+            </div>
+            <div class="pix-inline" id="pixInline" hidden>
+              <div class="pix-inline__image">
+                <img src="assets/images/qrcode.png" alt="QR Code Pix da barraca">
+              </div>
+              <p class="pix-inline__hint">O cliente deve escanear e digitar exatamente o valor mostrado acima no app do banco.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button class="primary-button" id="finalizarBtn" type="button">Finalizar e imprimir</button>
+        </div>
+      </aside>
+    </main>
+  </div>
+
+  <dialog class="item-dialog" id="itemDialog">
+    <form class="dialog-card" method="dialog" id="dialogForm">
+      <button class="dialog-close" id="closeDialogBtn" type="button" aria-label="Fechar">x</button>
+
+      <div class="dialog-header">
+        <p class="section-kicker">Personalizar item</p>
+        <h3 id="dialogNome"></h3>
+        <p id="dialogDescricao"></p>
+      </div>
+
+      <div class="dialog-price" id="dialogPreco"></div>
+
+      <div class="quantity-box">
+        <button class="qty-button" id="decreaseQtyBtn" type="button">-</button>
+        <strong id="dialogQtd">1</strong>
+        <button class="qty-button" id="increaseQtyBtn" type="button">+</button>
+      </div>
+
+      <button class="primary-button" id="confirmDialogBtn" type="submit">Adicionar ao pedido</button>
+    </form>
+  </dialog>
+
+  <dialog class="decision-dialog" id="decisionDialog">
+    <div class="dialog-card decision-dialog__card">
+      <button class="dialog-close" id="closeDecisionDialogBtn" type="button" aria-label="Fechar">x</button>
+      <div class="dialog-header">
+        <p class="section-kicker">Fechar pedido</p>
+        <h3>O que deseja fazer?</h3>
+        <p>Escolha se quer imprimir o comprovante ou apenas iniciar um novo pedido.</p>
+      </div>
+
+      <div class="decision-dialog__total">
+        <span>Total do pedido</span>
+        <strong id="decisionTotalValue">R$ 0,00</strong>
+      </div>
+
+      <div class="decision-dialog__actions">
+        <button class="ghost-button" id="decisionNewOrderBtn" type="button">Novo pedido</button>
+        <button class="primary-button" id="decisionPrintBtn" type="button">Imprimir</button>
+      </div>
+    </div>
+  </dialog>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
