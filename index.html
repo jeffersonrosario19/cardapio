@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -49,13 +50,18 @@
         <div class="product-grid" id="cardapioGrid"></div>
       </section>
 
-      <aside class="order-panel">
+      <div class="order-overlay" id="orderOverlay" hidden></div>
+
+      <aside class="order-panel" id="orderPanel">
         <div class="section-header">
           <div>
             <p class="section-kicker">Pedido atual</p>
             <h2>Resumo da venda</h2>
           </div>
-          <button class="ghost-button" id="newOrderBtn" type="button">Novo pedido</button>
+          <div class="order-panel__actions-top">
+            <button class="ghost-button order-panel__close" id="closeOrderPanelBtn" type="button">Fechar</button>
+            <button class="ghost-button" id="newOrderBtn" type="button">Novo pedido</button>
+          </div>
         </div>
 
         <div class="order-meta">
@@ -123,6 +129,14 @@
         </div>
       </aside>
     </main>
+  </div>
+
+  <div class="mobile-order-bar" id="mobileOrderBar">
+    <div class="mobile-order-bar__summary">
+      <span>Total do pedido</span>
+      <strong id="mobileBarTotal">R$ 0,00</strong>
+    </div>
+    <button class="primary-button mobile-order-bar__button" id="openOrderPanelBtn" type="button">Ver pedido</button>
   </div>
 
   <dialog class="item-dialog" id="itemDialog">
