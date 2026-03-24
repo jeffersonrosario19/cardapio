@@ -28,7 +28,7 @@ body {
 }
 
 body {
-  font-family: "Nunito", sans-serif;
+  font-family: "Verdana", sans-serif;
   color: var(--ink);
   background:
     radial-gradient(circle at top left, rgba(182, 69, 29, 0.16), transparent 30%),
@@ -93,7 +93,7 @@ button {
 .panel-head h2,
 .order-drawer__header h2,
 .dialog-header h3 {
-  font-family: "Anton", sans-serif;
+  font-family: "Verdana", sans-serif;
   letter-spacing: 0.02em;
 }
 
@@ -722,7 +722,7 @@ button {
 
 .dialog-card {
   position: relative;
-  width: min(460px, calc(100vw - 24px));
+  width: min(380px, calc(100vw - 16px));
   margin: auto;
   padding: 24px;
   border-radius: var(--radius-xl);
@@ -733,15 +733,22 @@ button {
   position: absolute;
   top: 12px;
   right: 12px;
+  display: grid;
+  place-items: center;
   width: 42px;
   height: 42px;
   border-radius: 50%;
-  background: var(--blue-dark);
-  color: #ffffff;
+  padding: 0;
+  background: transparent;
   box-shadow: 0 8px 18px rgba(143, 52, 21, 0.24);
-  font-weight: 900;
-  font-size: 1.1rem;
   z-index: 2;
+}
+
+.dialog-close img {
+  display: block;
+  width: 42px;
+  height: 42px;
+  object-fit: contain;
 }
 
 .dialog-card__media {
@@ -835,7 +842,7 @@ button {
   background: linear-gradient(180deg, #b6451d 0%, #8f3415 100%);
   color: #ffffff;
   box-shadow: 0 14px 28px rgba(143, 52, 21, 0.22);
-  font-family: "Anton", sans-serif;
+  font-family: "Verdana", sans-serif;
   font-size: 2rem;
   line-height: 1;
 }
@@ -889,7 +896,7 @@ button {
 
 @media (max-width: 760px) {
   .app {
-    width: min(100% - 14px, 100%);
+    width: 100%;
     padding: 12px 0 104px;
   }
 
@@ -898,6 +905,10 @@ button {
   .order-drawer,
   .dialog-card {
     border-radius: 24px;
+  }
+
+  .dialog-card {
+    padding: 16px;
   }
 
   .brand {
